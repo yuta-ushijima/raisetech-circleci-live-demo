@@ -1,0 +1,7 @@
+
+---
+- name: Playbook for staging
+  hosts: staging
+  become: yes
+  roles:
+    - { role: git, tags: git }
