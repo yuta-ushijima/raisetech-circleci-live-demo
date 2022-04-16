@@ -4,6 +4,7 @@ version: 2.1
 
 orbs: 
   aws-cli: circleci/aws-cli@3.0.0
+  ansible-playbook: orbss/ansible-playbook@0.0.5
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -21,6 +22,19 @@ jobs:
           command: |
             set -x
             aws cloudformation deploy --stack-name sampleStackFromCirlceCI --template-file sampleStack.yml
+  execute-ansible:
+    executor: ansible-playbook/default
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "99:aa:df:0f:d2:ee:fe:c8:fb:4a:36:41:c8:88:77:01"
+      - ansible-playbook/install:
+          version: 2.10.3
+      - ansible-playbook/playbook:
+          playbook: ansible/playbook.yml
+          playbook-options: "-u ec2-user -i ansible/hosts/inventory --private-key ~/.ssh/id_rsa"
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -28,4 +42,7 @@ workflows:
   raisetech-circleci-live-demo:
     jobs:
       - execute-cloudformation
+      - execute-ansible:
+          requires:
+            - "execute-cloudformation"
 
