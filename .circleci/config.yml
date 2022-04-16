@@ -22,7 +22,6 @@ jobs:
             set -x
             aws cloudformation deploy --stack-name sampleStackFromCirlceCI --template-file sampleStack.yml
 
-
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
