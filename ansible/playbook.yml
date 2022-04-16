@@ -1,7 +1,6 @@
 
 ---
-- name: Playbook for staging
-  hosts: 54.249.79.236
+- hosts: inventory
   become: yes
   roles:
     - { role: git, tags: git }
