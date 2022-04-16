@@ -17,13 +17,10 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_DEFAULT_REGION
       - run:
-          name: Check aws cli versions
-          command: aws --version
-      - run:
-          name: List Up My S3 Bucket
+          name: deploy Cloudformation
           command: |
             set -x
-            aws s3 ls
+            aws cloudformation deploy --stack-name sampleStackFromCirlceCI --template-file file://sampleStack.yml
 
 
 # Invoke jobs via workflows
