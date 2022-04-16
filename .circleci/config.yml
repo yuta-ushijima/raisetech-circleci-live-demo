@@ -21,7 +21,7 @@ jobs:
           name: deploy Cloudformation
           command: |
             set -x
-            aws cloudformation deploy --stack-name sampleStackFromCirlceCI --template-file sampleStack.yml
+            aws cloudformation deploy --stack-name sampleStackFromCirlceCI --template-file cloudformation/sampleStack.yml
   execute-ansible:
     executor: ansible-playbook/default
     steps:
