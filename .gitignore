@@ -1,0 +1,4 @@
+serverspec/.bundle/
+serverspec/vendor/bundle
+.idea
+.bundle/
