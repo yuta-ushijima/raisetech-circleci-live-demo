@@ -3,9 +3,11 @@
 CircleCIで下記のworkflowを実行するサンプルリポジトリです。
 
 ## Workflow
-1. aws cliでCloudformationを作成または更新
-2. ansible実行
-3. serverspec実行
+1. リポジトリにコードをpush
+2. CircleCIがリポジトリにpushされたことをイベントトリガーとして、workflowを実行
+3. 最初のworkflowとしてCloudformationを実行
+4. 2番目のworkflowとしてCloudformationによって作成されたAWS環境に対して、ansibleを実行
+5. 3番目のworkflowとしてServerspecで自動テストを実行する
 
 ## 環境
 ### aws cli
